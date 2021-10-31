@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    host: localhost
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:myvet}?useTimezone=true&serverTimezone=America/Belem&createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:toor}
+  jpa:
+    database: mysql
+    properties.hibernate:
+      show_sql: true
+      format_sql: true
+  liquibase:
+    url: ${spring.datasource.url}
+    default-schema: myvet
+    change-log: classpath:/liquibase/liquibase-changelog.yml
+    user: ${DB_USER_LIQUIBASE:root}
+    password: ${DB_PASSWORD_LIQUIBASE:toor}
