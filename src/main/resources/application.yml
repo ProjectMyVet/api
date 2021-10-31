@@ -1,4 +1,15 @@
+server:
+  port: 8010
+  servlet:
+    context-path: /myvet
+
 spring:
+  profiles:
+    active: @activatedProperties@
+  application:
+    name: myvet-api
+  banner:
+    location: classpath:/banner/bannername.txt
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     host: localhost
