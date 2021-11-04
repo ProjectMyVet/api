@@ -1,0 +1,117 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-user
+      author: rhian.costa
+      runInTransaction: true
+      changes:
+        - sqlFile:
+            path: user/create-table-user.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: create-table-customer
+      author: rhian.costa
+      runInTransaction: true
+      changes:
+        - sqlFile:
+            path: customer/create-table-customer.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: customer/create-index-customer_user_user_id_idx.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: create-table-vet
+      author: rhian.costa
+      runInTransaction: true
+      changes:
+        - sqlFile:
+            path: vet/create-table-vet.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: vet/create-index-vet_user_user_id_idx.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: create-table-schedule
+      author: rhian.costa
+      runInTransaction: true
+      changes:
+        - sqlFile:
+            path: schedule/create-table-schedule.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: schedule/create-index-schedule_user_user_id_idx.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: create-table-reminder
+      author: rhian.costa
+      runInTransaction: true
+      changes:
+        - sqlFile:
+            path: reminder/create-table-reminder.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: reminder/create-index-reminder_user_user_id_idx.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: create-table-pet
+      author: rhian.costa
+      runInTransaction: true
+      changes:
+        - sqlFile:
+            path: pet/create-table-pet.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: pet/create-index-pet_user_user_id_idx.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: create-table-medication
+      author: rhian.costa
+      runInTransaction: true
+      changes:
+        - sqlFile:
+            path: medication/create-table-medication.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: medication/create-index-medication_user_user_id_idx.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: medication/create-index-medication_pet_pet_id_idx.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: create-table-attendance
+      author: rhian.costa
+      runInTransaction: true
+      changes:
+        - sqlFile:
+            path: attendance/create-table-attendance.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: attendance/create-index-attendance_user_vet_id_idx.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: attendance/create-index-attendance_user_customer_id_idx.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: attendance/create-index-attendance_pet_pet_id_idx.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: create-table-treatment
+      author: rhian.costa
+      runInTransaction: true
+      changes:
+        - sqlFile:
+            path: treatment/create-table-treatment.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: treatment/create-index-treatment_attendence_attendence_id_idx.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: create-table-evaluation
+      author: rhian.costa
+      runInTransaction: true
+      changes:
+        - sqlFile:
+            path: evaluation/create-table-evaluation.sql
+            relativeToChangelogFile: true
+        - sqlFile:
+            path: evaluation/create-index-evaluation_attendence_attendence_id_idx.sql
+            relativeToChangelogFile: true
