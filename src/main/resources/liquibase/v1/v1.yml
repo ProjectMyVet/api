@@ -77,21 +77,21 @@ databaseChangeLog:
             path: medication/create-index-medication_pet_pet_id_idx.sql
             relativeToChangelogFile: true
   - changeSet:
-      id: create-table-attendence
+      id: create-table-attendance
       author: rhian.costa
       runInTransaction: true
       changes:
         - sqlFile:
-            path: attendence/create-table-attendence.sql
+            path: attendance/create-table-attendance.sql
             relativeToChangelogFile: true
         - sqlFile:
-            path: attendence/create-index-attendence_user_vet_id_idx.sql
+            path: attendance/create-index-attendance_user_vet_id_idx.sql
             relativeToChangelogFile: true
         - sqlFile:
-            path: attendence/create-index-attendence_user_customer_id_idx.sql
+            path: attendance/create-index-attendance_user_customer_id_idx.sql
             relativeToChangelogFile: true
         - sqlFile:
-            path: attendence/create-index-attendence_pet_pet_id_idx.sql
+            path: attendance/create-index-attendance_pet_pet_id_idx.sql
             relativeToChangelogFile: true
   - changeSet:
       id: create-table-treatment

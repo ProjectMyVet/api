@@ -14,7 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -22,26 +21,27 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Pet {
+public class Attendance {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "customer_id")
+    private User customer;
+
+    @ManyToOne
+    @JoinColumn(name = "vet_id")
+    private User vet;
+
+    @ManyToOne
+    @JoinColumn(name = "pet_id")
+    private Pet pet;
 
     @NotBlank
-    @Size(max = 255)
-    private String name;
-
-    @NotNull
-    private LocalDate birthDate;
-
-    @NotBlank
-    @Size(max = 255)
-    private String breed;
+    @Size(max = 30)
+    private String type;
 
     @NotNull
     private LocalDateTime createdAt;

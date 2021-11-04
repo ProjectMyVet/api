@@ -11,10 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -22,26 +20,21 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Pet {
+public class Evaluation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @NotBlank
-    @Size(max = 255)
-    private String name;
+    @JoinColumn(name = "attendance_id")
+    private Attendance attendance;
 
     @NotNull
-    private LocalDate birthDate;
+    private Integer grade;
 
-    @NotBlank
     @Size(max = 255)
-    private String breed;
+    private String description;
 
     @NotNull
     private LocalDateTime createdAt;

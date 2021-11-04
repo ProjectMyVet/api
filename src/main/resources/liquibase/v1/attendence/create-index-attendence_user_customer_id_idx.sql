@@ -1,1 +1,0 @@
-CREATE INDEX `attendence_user_customer_id_idx` ON `attendence` ( `customer_id` );
