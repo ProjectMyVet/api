@@ -1,0 +1,1 @@
+CREATE INDEX `customer_user_user_id_idx` ON `customer` ( `user_id` );
