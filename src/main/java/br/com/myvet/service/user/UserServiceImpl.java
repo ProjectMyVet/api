@@ -14,6 +14,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserCheckingResponseDto checkExistsByIdToken(String idToken) {
         final var exists = repository.existsByIdToken(idToken);
+        //TODO: criar fluxo de exception 404 quando não encontrar
+//        repository.findByIdToken(idToken).orElse(null);
         return new UserCheckingResponseDto(exists);
     }
 }
