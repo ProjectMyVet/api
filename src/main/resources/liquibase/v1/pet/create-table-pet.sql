@@ -4,6 +4,7 @@ CREATE TABLE `pet` (
     `name`				VARCHAR(255) NOT NULL,
     `birth_date`		DATE NOT NULL,
     `breed`				VARCHAR(255) NOT NULL,
+    `type`				VARCHAR(30) NOT NULL,
     `created_at`		DATETIME NOT NULL,
     `updated_at`		DATETIME NOT NULL,
     PRIMARY KEY ( `id` ),

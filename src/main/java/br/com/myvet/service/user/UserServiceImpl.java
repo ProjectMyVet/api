@@ -1,5 +1,6 @@
 package br.com.myvet.service.user;
 
+import br.com.myvet.domain.User;
 import br.com.myvet.dto.user.UserCheckingResponseDto;
 import br.com.myvet.exception.NotFoundException;
 import br.com.myvet.mapper.user.UserMapper;
@@ -20,5 +21,11 @@ public class UserServiceImpl implements UserService {
         return repository.findByIdToken(idToken)
                 .map(userMapper::mapToUserCheckingResponseDto)
             .orElseThrow(() -> new NotFoundException("Usuário não encontrado")); //TODO criar message service
+    }
+
+    @Override
+    public User findByIdOrElseThrow(Long userId) {
+        return repository.findById(userId)
+                .orElseThrow(() -> new NotFoundException("Usuário não encontrado"));
     }
 }
