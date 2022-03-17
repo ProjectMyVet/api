@@ -1,6 +1,8 @@
 package br.com.myvet.service.user;
 
 import br.com.myvet.dto.user.UserCheckingResponseDto;
+import br.com.myvet.exception.NotFoundException;
+import br.com.myvet.mapper.user.UserMapper;
 import br.com.myvet.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,11 +13,12 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository repository;
 
+    private final UserMapper userMapper;
+
     @Override
     public UserCheckingResponseDto checkExistsByIdToken(String idToken) {
-        final var exists = repository.existsByIdToken(idToken);
-        //TODO: criar fluxo de exception 404 quando não encontrar
-//        repository.findByIdToken(idToken).orElse(null);
-        return new UserCheckingResponseDto(exists);
+        return repository.findByIdToken(idToken)
+                .map(userMapper::mapToUserCheckingResponseDto)
+            .orElseThrow(() -> new NotFoundException("Usuário não encontrado")); //TODO criar message service
     }
 }

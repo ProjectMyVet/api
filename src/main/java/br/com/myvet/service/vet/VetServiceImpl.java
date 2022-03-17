@@ -1,6 +1,6 @@
 package br.com.myvet.service.vet;
 
-import br.com.myvet.domain.Vet;
+import br.com.myvet.dto.user.UserCreationResponseDto;
 import br.com.myvet.dto.vet.VetCreationRequestDto;
 import br.com.myvet.mapper.vet.VetMapper;
 import br.com.myvet.repository.VetRepository;
@@ -16,8 +16,8 @@ public class VetServiceImpl implements VetService {
     private final VetMapper mapper;
 
     @Override
-    public void registerVet(VetCreationRequestDto requestDto) {
+    public UserCreationResponseDto registerVet(VetCreationRequestDto requestDto) {
         final var vet = mapper.mapToVet(requestDto);
-        repository.save(vet);
+        return new UserCreationResponseDto(repository.save(vet).getId());
     }
 }
