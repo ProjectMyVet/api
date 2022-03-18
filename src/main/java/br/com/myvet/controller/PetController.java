@@ -1,6 +1,7 @@
 package br.com.myvet.controller;
 
 import br.com.myvet.dto.pet.PetCreationRequestDto;
+import br.com.myvet.dto.pet.PetEditionRequestDto;
 import br.com.myvet.dto.pet.PetSearchingResponseDto;
 import br.com.myvet.service.pet.PetService;
 import lombok.RequiredArgsConstructor;
@@ -16,8 +17,8 @@ public class PetController {
     private final PetService petService;
 
     @PostMapping
-    public void registerPet(@RequestBody PetCreationRequestDto requestDto) {
-        petService.registerPet(requestDto);
+    public void register(@RequestBody PetCreationRequestDto requestDto) {
+        petService.register(requestDto);
     }
 
     @GetMapping
@@ -25,5 +26,8 @@ public class PetController {
         return petService.search(userId);
     }
 
-    //TODO edição de pets
+    @PutMapping
+    public void edit(@RequestParam(name = "userId") Long userId, @RequestBody PetEditionRequestDto requestDto) {
+        petService.edit(userId, requestDto);
+    }
 }

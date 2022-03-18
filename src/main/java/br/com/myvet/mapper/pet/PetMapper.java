@@ -3,6 +3,7 @@ package br.com.myvet.mapper.pet;
 import br.com.myvet.domain.Pet;
 import br.com.myvet.domain.User;
 import br.com.myvet.dto.pet.PetCreationRequestDto;
+import br.com.myvet.dto.pet.PetEditionRequestDto;
 import br.com.myvet.dto.pet.PetSearchingResponseDto;
 import org.springframework.stereotype.Component;
 
@@ -31,5 +32,12 @@ public class PetMapper {
                 .name(pet.getName())
                 .type(pet.getType())
                 .build();
+    }
+
+    public void mapFromPetEditionRequestDto(Pet pet, PetEditionRequestDto requestDto) {
+        pet.setBreed(requestDto.getBreed());
+        pet.setBirthDate(requestDto.getBirthDate());
+        pet.setName(requestDto.getName());
+        pet.setType(requestDto.getType());
     }
 }

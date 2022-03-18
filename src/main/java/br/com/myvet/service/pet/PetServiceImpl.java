@@ -1,7 +1,10 @@
 package br.com.myvet.service.pet;
 
+import br.com.myvet.domain.Pet;
 import br.com.myvet.dto.pet.PetCreationRequestDto;
+import br.com.myvet.dto.pet.PetEditionRequestDto;
 import br.com.myvet.dto.pet.PetSearchingResponseDto;
+import br.com.myvet.exception.NotFoundException;
 import br.com.myvet.mapper.pet.PetMapper;
 import br.com.myvet.repository.PetRepository;
 import br.com.myvet.service.user.UserService;
@@ -22,7 +25,7 @@ public class PetServiceImpl implements PetService {
     private final PetMapper mapper;
 
     @Override
-    public void registerPet(PetCreationRequestDto requestDto) {
+    public void register(PetCreationRequestDto requestDto) {
         final var user = userService.findByIdOrElseThrow(requestDto.getUserId());
         final var pet = mapper.mapFromPetCreationRequestDto(user, requestDto);
         repository.save(pet);
@@ -34,5 +37,14 @@ public class PetServiceImpl implements PetService {
         return repository.findAllByUser(user).stream()
                 .map(mapper::mapToPetSearchingResponseDto)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void edit(Long userId, PetEditionRequestDto requestDto) {
+        final var user = userService.findByIdOrElseThrow(userId);
+        final Pet pet = repository.findAllByIdAndUser(requestDto.getId(), user)
+                .orElseThrow(() -> new NotFoundException("Animal de estimação não encontrado"));
+        mapper.mapFromPetEditionRequestDto(pet, requestDto);
+        repository.save(pet);
     }
 }
