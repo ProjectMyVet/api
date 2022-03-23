@@ -3,7 +3,7 @@ package br.com.myvet.service.user;
 import br.com.myvet.domain.User;
 import br.com.myvet.dto.user.UserCheckingResponseDto;
 import br.com.myvet.exception.NotFoundException;
-import br.com.myvet.mapper.user.UserMapper;
+import br.com.myvet.mapper.UserMapper;
 import br.com.myvet.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

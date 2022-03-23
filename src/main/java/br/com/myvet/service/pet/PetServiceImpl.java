@@ -5,7 +5,7 @@ import br.com.myvet.dto.pet.PetCreationRequestDto;
 import br.com.myvet.dto.pet.PetEditionRequestDto;
 import br.com.myvet.dto.pet.PetSearchingResponseDto;
 import br.com.myvet.exception.NotFoundException;
-import br.com.myvet.mapper.pet.PetMapper;
+import br.com.myvet.mapper.PetMapper;
 import br.com.myvet.repository.PetRepository;
 import br.com.myvet.service.user.UserService;
 import lombok.RequiredArgsConstructor;

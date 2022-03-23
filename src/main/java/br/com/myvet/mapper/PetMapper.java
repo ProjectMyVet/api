@@ -1,4 +1,4 @@
-package br.com.myvet.mapper.pet;
+package br.com.myvet.mapper;
 
 import br.com.myvet.domain.Pet;
 import br.com.myvet.domain.User;

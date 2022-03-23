@@ -1,4 +1,4 @@
-package br.com.myvet.mapper.user;
+package br.com.myvet.mapper;
 
 import br.com.myvet.domain.User;
 import br.com.myvet.dto.user.UserCheckingResponseDto;

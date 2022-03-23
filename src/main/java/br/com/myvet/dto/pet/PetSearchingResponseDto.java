@@ -1,6 +1,7 @@
 package br.com.myvet.dto.pet;
 
 import br.com.myvet.enumeration.PetType;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,6 +19,7 @@ public class PetSearchingResponseDto {
 
     private String name;
 
+    @JsonFormat(pattern="dd-MM-yyyy")
     private LocalDate birthDate;
 
     private String breed;

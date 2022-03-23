@@ -1,4 +1,4 @@
-package br.com.myvet.mapper.customer;
+package br.com.myvet.mapper;
 
 import br.com.myvet.domain.Customer;
 import br.com.myvet.dto.customer.CustomerCreationRequestDto;

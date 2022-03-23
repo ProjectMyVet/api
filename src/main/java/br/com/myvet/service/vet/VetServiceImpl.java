@@ -2,7 +2,7 @@ package br.com.myvet.service.vet;
 
 import br.com.myvet.dto.user.UserCreationResponseDto;
 import br.com.myvet.dto.vet.VetCreationRequestDto;
-import br.com.myvet.mapper.vet.VetMapper;
+import br.com.myvet.mapper.VetMapper;
 import br.com.myvet.repository.VetRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
