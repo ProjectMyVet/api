@@ -1,5 +1,6 @@
 package br.com.myvet.dto.reminder;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +17,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class ReminderEditionRequestDto {
 
-    @NotNull //TODO alterar para date apenas
+    @NotNull
+    private Long id;
+
+    @NotNull
+    @JsonFormat(pattern="dd-MM-yyyy HH:mm")
     private LocalDateTime date;
 
     @NotBlank

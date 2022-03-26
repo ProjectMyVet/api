@@ -40,5 +40,9 @@ public class ReminderServiceImpl implements ReminderService {
     @Override
     public void edit(Long userId, ReminderEditionRequestDto requestDto) {
         final var user = userService.findByIdOrElseThrow(userId);
+        final var reminder = repository.findByIdAndUser(requestDto.getId(), user)
+                .orElseThrow(() -> new RuntimeException("Lembrete não encontrado"));
+        mapper.mapFromReminderEditionRequestDto(reminder, requestDto);
+        repository.save(reminder);
     }
 }

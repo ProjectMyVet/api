@@ -1,5 +1,6 @@
 package br.com.myvet.dto.reminder;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,6 +21,7 @@ public class ReminderCreationRequestDto {
     private Long userId;
 
     @NotNull
+    @JsonFormat(pattern="dd-MM-yyyy HH:mm")
     private LocalDateTime date;
 
     @NotBlank

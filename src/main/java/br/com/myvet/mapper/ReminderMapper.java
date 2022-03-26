@@ -31,6 +31,7 @@ public class ReminderMapper {
     }
 
     public void mapFromReminderEditionRequestDto(Reminder reminder, ReminderEditionRequestDto requestDto) {
-        reminder.setDate(re);
+        reminder.setDate(requestDto.getDate());
+        reminder.setAction(requestDto.getAction());
     }
 }
