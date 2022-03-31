@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
@@ -30,10 +31,15 @@ public class Schedule {
     private TurnType turn;
 
     @NotNull
-    private LocalDateTime fromDate;
+    private Integer dayOfWeek;
 
-    @NotNull
-    private LocalDateTime toDate;
+    @NotBlank
+    @Size(max = 30)
+    private String fromTime;
+
+    @NotBlank
+    @Size(max = 30)
+    private String toTime;
 
     @NotNull
     private LocalDateTime createdAt;

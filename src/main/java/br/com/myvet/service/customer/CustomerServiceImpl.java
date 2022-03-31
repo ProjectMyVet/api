@@ -1,6 +1,8 @@
 package br.com.myvet.service.customer;
 
+import br.com.myvet.domain.Customer;
 import br.com.myvet.dto.customer.CustomerCreationRequestDto;
+import br.com.myvet.dto.customer.CustomerSearchResponseDto;
 import br.com.myvet.dto.user.UserCreationResponseDto;
 import br.com.myvet.mapper.CustomerMapper;
 import br.com.myvet.repository.CustomerRepository;
@@ -19,5 +21,10 @@ public class CustomerServiceImpl implements CustomerService {
     public UserCreationResponseDto registerCustomer(CustomerCreationRequestDto requestDto) {
         final var customer = mapper.mapToCustomer(requestDto);
         return new UserCreationResponseDto(repository.save(customer).getId());
+    }
+
+    @Override
+    public CustomerSearchResponseDto search(Customer customer) {
+        return mapper.mapToCustomerSearchResponseDto(customer);
     }
 }

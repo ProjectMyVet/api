@@ -1,7 +1,10 @@
 package br.com.myvet.mapper;
 
 import br.com.myvet.domain.Customer;
+import br.com.myvet.domain.Vet;
 import br.com.myvet.dto.customer.CustomerCreationRequestDto;
+import br.com.myvet.dto.customer.CustomerSearchResponseDto;
+import br.com.myvet.dto.vet.VetSearchResponseDto;
 import br.com.myvet.enumeration.UserType;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +23,16 @@ public class CustomerMapper {
                 .updatedAt(LocalDateTime.now())
                 .bio(requestDto.getBio())
                 .type(UserType.CUSTOMER)
+                .build();
+    }
+
+    public CustomerSearchResponseDto mapToCustomerSearchResponseDto(Customer customer) {
+        return CustomerSearchResponseDto.builder()
+                .name(customer.getName())
+                .email(customer.getEmail())
+                .photoUrl(customer.getPhotoUrl())
+                .bio(customer.getBio())
+                .type(customer.getType())
                 .build();
     }
 }

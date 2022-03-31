@@ -41,4 +41,9 @@ public class UserController {
     public UserCheckingResponseDto checkExists(@RequestParam(value = "idToken") @NotBlank @Size(max = 255) String idToken) {
         return userService.checkExistsByIdToken(idToken);
     }
+
+    @GetMapping("/{id}")
+    public Object searchById(@PathVariable(name = "id") Long id) {
+        return userService.findById(id);
+    }
 }

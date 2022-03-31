@@ -9,4 +9,6 @@ public interface UserService {
 
     User findByIdOrElseThrow(Long userId);
 
+    Object findById(Long userId);
+
 }
