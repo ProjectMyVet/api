@@ -1,9 +1,11 @@
 package br.com.myvet.service.customer;
 
 import br.com.myvet.domain.Customer;
+import br.com.myvet.domain.Vet;
 import br.com.myvet.dto.customer.CustomerCreationRequestDto;
 import br.com.myvet.dto.customer.CustomerSearchResponseDto;
 import br.com.myvet.dto.user.UserCreationResponseDto;
+import br.com.myvet.exception.NotFoundException;
 import br.com.myvet.mapper.CustomerMapper;
 import br.com.myvet.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,5 +28,11 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerSearchResponseDto search(Customer customer) {
         return mapper.mapToCustomerSearchResponseDto(customer);
+    }
+
+    @Override
+    public Customer findById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Usuário não encontrado"));
     }
 }

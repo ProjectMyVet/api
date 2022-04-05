@@ -1,10 +1,8 @@
 package br.com.myvet.mapper;
 
 import br.com.myvet.domain.Customer;
-import br.com.myvet.domain.Vet;
 import br.com.myvet.dto.customer.CustomerCreationRequestDto;
 import br.com.myvet.dto.customer.CustomerSearchResponseDto;
-import br.com.myvet.dto.vet.VetSearchResponseDto;
 import br.com.myvet.enumeration.UserType;
 import org.springframework.stereotype.Component;
 

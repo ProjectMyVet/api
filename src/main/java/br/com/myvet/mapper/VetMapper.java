@@ -1,8 +1,10 @@
 package br.com.myvet.mapper;
 
+import br.com.myvet.domain.User;
 import br.com.myvet.domain.Vet;
 import br.com.myvet.dto.vet.VetCreationRequestDto;
-import br.com.myvet.dto.vet.VetSearchResponseDto;
+import br.com.myvet.dto.vet.VetSearchingResponseDto;
+import br.com.myvet.dto.vet.VetSearchingScheduleResponseDto;
 import br.com.myvet.enumeration.UserType;
 import org.springframework.stereotype.Component;
 
@@ -25,8 +27,8 @@ public class VetMapper {
                 .build();
     }
 
-    public VetSearchResponseDto mapToVetSearchResponseDto(Vet vet) {
-        return VetSearchResponseDto.builder()
+    public VetSearchingResponseDto mapToVetSearchingResponseDto(Vet vet) {
+        return VetSearchingResponseDto.builder()
                 .name(vet.getName())
                 .email(vet.getEmail())
                 .photoUrl(vet.getPhotoUrl())

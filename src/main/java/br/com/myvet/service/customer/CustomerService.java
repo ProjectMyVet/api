@@ -11,4 +11,6 @@ public interface CustomerService {
 
     CustomerSearchResponseDto search(Customer customer);
 
+    Customer findById(Long id);
+
 }

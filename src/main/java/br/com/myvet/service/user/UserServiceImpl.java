@@ -40,12 +40,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Object findById(Long userId) {
+    public Object findObjectById(Long userId) {
         final User user = findByIdOrElseThrow(userId);
         if (CUSTOMER.equals(user.getType())) {
             return customerService.search((Customer) user);
         } else {
             return vetService.search((Vet) user);
         }
+    }
+
+    @Override
+    public Vet findVetById(Long userId) {
+        return vetService.findById(userId);
+    }
+
+    @Override
+    public Customer findCustomerById(Long userId) {
+        return customerService.findById(userId);
     }
 }

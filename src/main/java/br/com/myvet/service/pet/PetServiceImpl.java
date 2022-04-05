@@ -43,8 +43,14 @@ public class PetServiceImpl implements PetService {
     public void edit(Long userId, PetEditionRequestDto requestDto) {
         final var user = userService.findByIdOrElseThrow(userId);
         final Pet pet = repository.findAllByIdAndUser(requestDto.getId(), user)
-                .orElseThrow(() -> new NotFoundException("Animal de estimação não encontrado"));
+                .orElseThrow(() -> new NotFoundException("Pet não encontrado"));
         mapper.mapFromPetEditionRequestDto(pet, requestDto);
         repository.save(pet);
+    }
+
+    @Override
+    public Pet findById(Long petId) {
+        return repository.findById(petId)
+                .orElseThrow(() -> new NotFoundException("Pet não encontrado"));
     }
 }

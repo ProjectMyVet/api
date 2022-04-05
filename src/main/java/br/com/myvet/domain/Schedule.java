@@ -25,9 +25,10 @@ public class Schedule {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private Vet vet;
 
     @NotNull
+    @Enumerated(value = EnumType.STRING)
     private TurnType turn;
 
     @NotNull

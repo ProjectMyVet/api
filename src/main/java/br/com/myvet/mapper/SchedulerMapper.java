@@ -1,7 +1,7 @@
 package br.com.myvet.mapper;
 
 import br.com.myvet.domain.Schedule;
-import br.com.myvet.domain.User;
+import br.com.myvet.domain.Vet;
 import br.com.myvet.dto.scheduler.SchedulerCreationDateRequestDto;
 import br.com.myvet.dto.scheduler.SchedulerSearchingResponseDto;
 import br.com.myvet.enumeration.TurnType;
@@ -12,12 +12,12 @@ import java.time.LocalDateTime;
 @Component
 public class SchedulerMapper {
 
-    public Schedule mapFromSchedulerCreationDateRequestDto(TurnType turnType, User user, SchedulerCreationDateRequestDto requestDto) {
+    public Schedule mapFromSchedulerCreationDateRequestDto(TurnType turnType, Vet vet, SchedulerCreationDateRequestDto requestDto) {
         return Schedule.builder()
                 .toTime(requestDto.getToTime())
                 .fromTime(requestDto.getFromTime())
                 .dayOfWeek(requestDto.getDayOfWeek())
-                .user(user)
+                .vet(vet)
                 .createdAt(LocalDateTime.now())
                 .updatedAt(LocalDateTime.now())
                 .turn(turnType)

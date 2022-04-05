@@ -10,7 +10,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class VetSearchResponseDto {
+public class VetSearchingResponseDto {
 
     private String name;
 
