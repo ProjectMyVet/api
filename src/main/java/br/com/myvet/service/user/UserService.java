@@ -11,8 +11,6 @@ public interface UserService {
 
     User findByIdOrElseThrow(Long userId);
 
-    Object findObjectById(Long userId);
-
     Vet findVetById(Long userId);
 
     Customer findCustomerById(Long userId);

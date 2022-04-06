@@ -1,9 +1,12 @@
 package br.com.myvet.controller;
 
 import br.com.myvet.dto.customer.CustomerCreationRequestDto;
+import br.com.myvet.dto.customer.CustomerSearchingResponseDto;
 import br.com.myvet.dto.user.UserCheckingResponseDto;
 import br.com.myvet.dto.user.UserCreationResponseDto;
 import br.com.myvet.dto.vet.VetCreationRequestDto;
+import br.com.myvet.dto.vet.VetSearchingResponseDto;
+import br.com.myvet.service.attendance.AttendanceService;
 import br.com.myvet.service.customer.CustomerService;
 import br.com.myvet.service.user.UserService;
 import br.com.myvet.service.vet.VetService;
@@ -18,6 +21,8 @@ import javax.validation.constraints.Size;
 @RequiredArgsConstructor
 @RequestMapping("/users")
 public class UserController {
+
+    private final AttendanceService attendanceService;
 
     private final CustomerService customerService;
 
@@ -42,8 +47,13 @@ public class UserController {
         return userService.checkExistsByIdToken(idToken);
     }
 
-    @GetMapping("/{id}")
-    public Object searchById(@PathVariable(name = "id") Long id) {
-        return userService.findObjectById(id);
+    @GetMapping("/customer/{id}")
+    public CustomerSearchingResponseDto searchVetProfile(@PathVariable(name = "id") Long id) {
+        return attendanceService.searchCustomerProfile(id);
+    }
+
+    @GetMapping("/vet/{id}")
+    public VetSearchingResponseDto searchCustomerProfile(@PathVariable(name = "id") Long id) {
+        return attendanceService.searchVetProfile(id);
     }
 }

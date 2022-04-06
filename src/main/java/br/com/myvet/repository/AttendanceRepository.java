@@ -1,8 +1,10 @@
 package br.com.myvet.repository;
 
 import br.com.myvet.domain.Attendance;
+import br.com.myvet.domain.Pet;
 import br.com.myvet.domain.User;
 import br.com.myvet.domain.Vet;
+import br.com.myvet.enumeration.AttendanceStatus;
 import br.com.myvet.enumeration.TurnType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -21,5 +23,11 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
     Optional<Attendance> findByIdAndCustomer(Long attendanceId, User user);
 
     boolean existsByVetAndFromTimeAndToTimeAndTurnAndDate(Vet vet, String fromTime, String toTime, TurnType turnType, LocalDate date);
+
+    List<Attendance> findByCustomerAndPet(User user, Pet pet);
+
+    Long countByVetAndStatus(User vet, AttendanceStatus status);
+
+    Long countByCustomer(User customer);
 
 }

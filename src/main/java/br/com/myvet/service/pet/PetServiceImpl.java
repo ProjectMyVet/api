@@ -1,6 +1,7 @@
 package br.com.myvet.service.pet;
 
 import br.com.myvet.domain.Pet;
+import br.com.myvet.domain.User;
 import br.com.myvet.dto.pet.PetCreationRequestDto;
 import br.com.myvet.dto.pet.PetEditionRequestDto;
 import br.com.myvet.dto.pet.PetSearchingResponseDto;
@@ -42,7 +43,7 @@ public class PetServiceImpl implements PetService {
     @Override
     public void edit(Long userId, PetEditionRequestDto requestDto) {
         final var user = userService.findByIdOrElseThrow(userId);
-        final Pet pet = repository.findAllByIdAndUser(requestDto.getId(), user)
+        final Pet pet = repository.findByIdAndUser(requestDto.getId(), user)
                 .orElseThrow(() -> new NotFoundException("Pet não encontrado"));
         mapper.mapFromPetEditionRequestDto(pet, requestDto);
         repository.save(pet);
@@ -52,5 +53,16 @@ public class PetServiceImpl implements PetService {
     public Pet findById(Long petId) {
         return repository.findById(petId)
                 .orElseThrow(() -> new NotFoundException("Pet não encontrado"));
+    }
+
+    @Override
+    public Pet findByUserAndId(User user, Long petId) {
+        return repository.findByIdAndUser(petId, user)
+                .orElseThrow(() -> new NotFoundException("Pet não encontrado"));
+    }
+
+    @Override
+    public Long countByUser(User user) {
+        return repository.countByUser(user);
     }
 }

@@ -10,7 +10,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerSearchResponseDto {
+public class CustomerSearchingResponseDto {
 
     private String name;
 
@@ -21,5 +21,9 @@ public class CustomerSearchResponseDto {
     private String photoUrl;
 
     private String bio;
+
+    private Long quantityAttendance;
+
+    private Long quantityPet;
 
 }

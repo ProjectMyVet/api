@@ -1,6 +1,7 @@
 package br.com.myvet.controller;
 
 import br.com.myvet.dto.attendance.AttendanceCreationRequestDto;
+import br.com.myvet.dto.attendance.AttendanceFinishingRequestDto;
 import br.com.myvet.dto.attendance.AttendanceSearchResponseDto;
 import br.com.myvet.dto.attendance.AttendanceStatusRequestDto;
 import br.com.myvet.service.attendance.AttendanceService;
@@ -37,7 +38,7 @@ public class AttendanceController {
     }
 
     @PatchMapping("/finish")
-    public void finish(@RequestBody AttendanceStatusRequestDto requestDto) {
-
+    public void finish(@RequestBody AttendanceFinishingRequestDto requestDto) {
+        service.finish(requestDto);
     }
 }

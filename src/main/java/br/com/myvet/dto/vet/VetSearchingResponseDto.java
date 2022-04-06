@@ -24,4 +24,10 @@ public class VetSearchingResponseDto {
 
     private String career;
 
+    private Long quantityFinishedAttendance;
+
+    private Long quantityRequestedAttendance;
+
+    private Long quantityConfirmedAttendance;
+
 }

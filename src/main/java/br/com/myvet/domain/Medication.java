@@ -29,7 +29,7 @@ public class Medication {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User vet;
+    private User customer;
 
     @ManyToOne
     @JoinColumn(name = "pet_id")

@@ -59,4 +59,9 @@ public class AttendanceMapper {
         attendance.setStatus(AttendanceStatus.CANCELLED);
         attendance.setUpdatedAt(LocalDateTime.now());
     }
+
+    public void mapToFinish(Attendance attendance) {
+        attendance.setStatus(AttendanceStatus.FINISHED);
+        attendance.setUpdatedAt(LocalDateTime.now());
+    }
 }

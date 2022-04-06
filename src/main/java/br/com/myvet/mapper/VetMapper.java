@@ -1,10 +1,8 @@
 package br.com.myvet.mapper;
 
-import br.com.myvet.domain.User;
 import br.com.myvet.domain.Vet;
 import br.com.myvet.dto.vet.VetCreationRequestDto;
 import br.com.myvet.dto.vet.VetSearchingResponseDto;
-import br.com.myvet.dto.vet.VetSearchingScheduleResponseDto;
 import br.com.myvet.enumeration.UserType;
 import org.springframework.stereotype.Component;
 
@@ -27,7 +25,7 @@ public class VetMapper {
                 .build();
     }
 
-    public VetSearchingResponseDto mapToVetSearchingResponseDto(Vet vet) {
+    public VetSearchingResponseDto mapToVetSearchingResponseDto(Vet vet, Long confirmedAttendances, Long requestedAttendances, Long finishedAttendances) {
         return VetSearchingResponseDto.builder()
                 .name(vet.getName())
                 .email(vet.getEmail())
@@ -35,6 +33,9 @@ public class VetMapper {
                 .crmv(vet.getCrmv())
                 .career(vet.getCareer())
                 .type(vet.getType())
+                .quantityConfirmedAttendance(confirmedAttendances)
+                .quantityRequestedAttendance(requestedAttendances)
+                .quantityFinishedAttendance(finishedAttendances)
                 .build();
     }
 }

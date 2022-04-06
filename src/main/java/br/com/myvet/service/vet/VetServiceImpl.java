@@ -25,11 +25,6 @@ public class VetServiceImpl implements VetService {
     }
 
     @Override
-    public VetSearchingResponseDto search(Vet vet) {
-        return mapper.mapToVetSearchingResponseDto(vet);
-    }
-
-    @Override
     public Vet findById(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Usuário não encontrado"));
