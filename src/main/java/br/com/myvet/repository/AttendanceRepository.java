@@ -30,6 +30,8 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
 
     Long countByVetAndStatus(User vet, AttendanceStatus status);
 
+    Long countByVetAndStatusIn(User vet, List<AttendanceStatus> status);
+
     Long countByCustomer(User customer);
 
 }

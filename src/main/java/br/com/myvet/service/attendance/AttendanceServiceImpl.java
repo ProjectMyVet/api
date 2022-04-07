@@ -25,9 +25,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static br.com.myvet.enumeration.AttendanceStatus.*;
 
 @Service
 @RequiredArgsConstructor
@@ -117,10 +120,10 @@ public class AttendanceServiceImpl implements AttendanceService {
     @Override
     public VetSearchingResponseDto searchVetProfile(Long vetId) {
         final var vet = userService.findVetById(vetId);
-        final var confirmedAttendances = repository.countByVetAndStatus(vet, AttendanceStatus.CONFIRMED);
-        final var requestedAttendances = repository.countByVetAndStatus(vet, AttendanceStatus.REQUESTED);
-        final var finishedAttendances = repository.countByVetAndStatus(vet, AttendanceStatus.FINISHED);
-        final List<Attendance> attendances = repository.findByVetAndStatus(vet, AttendanceStatus.EVALUATED);
+        final var confirmedAttendances = repository.countByVetAndStatus(vet, CONFIRMED);
+        final var requestedAttendances = repository.countByVetAndStatus(vet, REQUESTED);
+        final var finishedAttendances = repository.countByVetAndStatusIn(vet, Arrays.asList(FINISHED, EVALUATED));
+        final List<Attendance> attendances = repository.findByVetAndStatus(vet, EVALUATED);
         final Double grade = evaluationService.searchGradeAverageByAttendances(attendances);
         return vetMapper.mapToVetSearchingResponseDto(vet, confirmedAttendances, requestedAttendances, finishedAttendances, grade);
     }
