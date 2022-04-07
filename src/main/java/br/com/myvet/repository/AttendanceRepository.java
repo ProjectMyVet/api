@@ -16,6 +16,8 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
 
     List<Attendance> findByVet(User user);
 
+    List<Attendance> findByVetAndStatus(User user, AttendanceStatus status);
+
     List<Attendance> findByCustomer(User user);
 
     Optional<Attendance> findByIdAndVet(Long attendanceId, User user);

@@ -17,13 +17,14 @@ public class UserMapper {
                 .build();
     }
 
-    public VetSearchingScheduleResponseDto mapToVetSearchingScheduleResponseDto(Vet vet) {
+    public VetSearchingScheduleResponseDto mapToVetSearchingScheduleResponseDto(Vet vet, Double grade) {
         return VetSearchingScheduleResponseDto.builder()
                 .name(vet.getName())
                 .id(vet.getId())
                 .photoUrl(vet.getPhotoUrl())
                 .email(vet.getEmail())
                 .crmv(vet.getCrmv())
+                .grade(grade)
                 .career(vet.getCareer())
                 .build();
     }

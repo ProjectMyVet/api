@@ -1,16 +1,19 @@
 package br.com.myvet.service.scheduler;
 
+import br.com.myvet.domain.Attendance;
 import br.com.myvet.domain.Schedule;
 import br.com.myvet.domain.Vet;
 import br.com.myvet.dto.scheduler.SchedulerCreationDateRequestDto;
 import br.com.myvet.dto.scheduler.SchedulerCreationRequestDto;
 import br.com.myvet.dto.scheduler.SchedulerSearchingResponseDto;
 import br.com.myvet.dto.vet.VetSearchingScheduleResponseDto;
+import br.com.myvet.enumeration.AttendanceStatus;
 import br.com.myvet.enumeration.TurnType;
 import br.com.myvet.mapper.SchedulerMapper;
 import br.com.myvet.mapper.UserMapper;
 import br.com.myvet.repository.SchedulerRepository;
 import br.com.myvet.service.attendance.AttendanceService;
+import br.com.myvet.service.evaluation.EvaluationService;
 import br.com.myvet.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,6 +28,8 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class SchedulerServiceImpl implements SchedulerService {
+
+    private final EvaluationService evaluationService;
 
     private final AttendanceService attendanceService;
 
@@ -73,7 +78,9 @@ public class SchedulerServiceImpl implements SchedulerService {
                 .collect(Collectors.toList());
         vets.forEach(vet -> {
             if (!attendanceService.check(vet, fromTime, toTime, turnType, formattedDate)) {
-                response.add(userMapper.mapToVetSearchingScheduleResponseDto(vet));
+                final List<Attendance> attendances = attendanceService.findByVetAndStatus(vet, AttendanceStatus.EVALUATED);
+                final Double grade = evaluationService.searchGradeAverageByAttendances(attendances);
+                response.add(userMapper.mapToVetSearchingScheduleResponseDto(vet, grade));
             }
         });
         return response;

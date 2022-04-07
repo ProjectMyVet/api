@@ -64,4 +64,9 @@ public class AttendanceMapper {
         attendance.setStatus(AttendanceStatus.FINISHED);
         attendance.setUpdatedAt(LocalDateTime.now());
     }
+
+    public void mapToEvaluated(Attendance attendance) {
+        attendance.setStatus(AttendanceStatus.EVALUATED);
+        attendance.setUpdatedAt(LocalDateTime.now());
+    }
 }

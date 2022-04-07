@@ -19,6 +19,8 @@ public class VetSearchingScheduleResponseDto {
 
     private String email;
 
+    private Double grade;
+
     private String crmv;
 
     private String career;

@@ -30,4 +30,6 @@ public class VetSearchingResponseDto {
 
     private Long quantityConfirmedAttendance;
 
+    private Double grade;
+
 }

@@ -7,6 +7,7 @@ import br.com.myvet.dto.attendance.AttendanceCreationRequestDto;
 import br.com.myvet.dto.attendance.AttendanceFinishingRequestDto;
 import br.com.myvet.dto.attendance.AttendanceSearchResponseDto;
 import br.com.myvet.dto.customer.CustomerSearchingResponseDto;
+import br.com.myvet.dto.evaluation.EvaluationCreationRequestDto;
 import br.com.myvet.dto.treatment.TreatmentSearchingResponseDto;
 import br.com.myvet.dto.vet.VetSearchingResponseDto;
 import br.com.myvet.enumeration.AttendanceStatus;
@@ -16,6 +17,7 @@ import br.com.myvet.mapper.AttendanceMapper;
 import br.com.myvet.mapper.CustomerMapper;
 import br.com.myvet.mapper.VetMapper;
 import br.com.myvet.repository.AttendanceRepository;
+import br.com.myvet.service.evaluation.EvaluationService;
 import br.com.myvet.service.pet.PetService;
 import br.com.myvet.service.treatment.TreatmentService;
 import br.com.myvet.service.user.UserService;
@@ -30,6 +32,8 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class AttendanceServiceImpl implements AttendanceService {
+
+    private final EvaluationService evaluationService;
 
     private final TreatmentService treatmentService;
 
@@ -116,7 +120,24 @@ public class AttendanceServiceImpl implements AttendanceService {
         final var confirmedAttendances = repository.countByVetAndStatus(vet, AttendanceStatus.CONFIRMED);
         final var requestedAttendances = repository.countByVetAndStatus(vet, AttendanceStatus.REQUESTED);
         final var finishedAttendances = repository.countByVetAndStatus(vet, AttendanceStatus.FINISHED);
-        return vetMapper.mapToVetSearchingResponseDto(vet, confirmedAttendances, requestedAttendances, finishedAttendances);
+        final List<Attendance> attendances = repository.findByVetAndStatus(vet, AttendanceStatus.EVALUATED);
+        final Double grade = evaluationService.searchGradeAverageByAttendances(attendances);
+        return vetMapper.mapToVetSearchingResponseDto(vet, confirmedAttendances, requestedAttendances, finishedAttendances, grade);
+    }
+
+    @Override
+    public void createEvaluation(EvaluationCreationRequestDto requestDto) {
+        final var customer = userService.findCustomerById(requestDto.getCustomerId());
+        final var attendance = repository.findByIdAndCustomer(requestDto.getAttendanceId(), customer)
+                .orElseThrow(() -> new RuntimeException("Atendimento não encontrado"));
+        evaluationService.create(attendance, requestDto);
+        mapper.mapToEvaluated(attendance);
+        repository.save(attendance);
+    }
+
+    @Override
+    public List<Attendance> findByVetAndStatus(User vet, AttendanceStatus status) {
+        return repository.findByVetAndStatus(vet, status);
     }
 
     private List<Attendance> findByUser(User user) {

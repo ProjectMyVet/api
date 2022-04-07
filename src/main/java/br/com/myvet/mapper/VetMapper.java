@@ -25,7 +25,7 @@ public class VetMapper {
                 .build();
     }
 
-    public VetSearchingResponseDto mapToVetSearchingResponseDto(Vet vet, Long confirmedAttendances, Long requestedAttendances, Long finishedAttendances) {
+    public VetSearchingResponseDto mapToVetSearchingResponseDto(Vet vet, Long confirmedAttendances, Long requestedAttendances, Long finishedAttendances, Double grade) {
         return VetSearchingResponseDto.builder()
                 .name(vet.getName())
                 .email(vet.getEmail())
@@ -33,6 +33,7 @@ public class VetMapper {
                 .crmv(vet.getCrmv())
                 .career(vet.getCareer())
                 .type(vet.getType())
+                .grade(grade)
                 .quantityConfirmedAttendance(confirmedAttendances)
                 .quantityRequestedAttendance(requestedAttendances)
                 .quantityFinishedAttendance(finishedAttendances)
